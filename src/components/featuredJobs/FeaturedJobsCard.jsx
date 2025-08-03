@@ -1,5 +1,6 @@
 import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineDollarCircle } from "react-icons/ai";
+import { Link } from "react-router";
 
 const FeaturedJobsCard = ({ singleJob }) => {
   console.log(singleJob);
@@ -26,7 +27,7 @@ const FeaturedJobsCard = ({ singleJob }) => {
           </span>
         </div>
         <button className="btn bg-[#7E90FE] text-white my-2">
-          View Details
+          <Link to={"/job-detail"}> View Details</Link>
         </button>
       </div>
     </>
