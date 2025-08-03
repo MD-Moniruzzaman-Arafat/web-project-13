@@ -51,7 +51,7 @@ const Footer = () => {
             <a className="link link-hover">+1 777 - 978 - 5570</a>
           </nav>
         </div>
-        <div className="flex justify-between container mx-auto py-10 text-[#FFFFFF66]">
+        <div className="flex flex-col lg:flex-row text-center lg:text-start justify-between container mx-auto py-10 text-[#FFFFFF66]">
           <span>@2023 CareerHub. All Rights Reserved</span>
           <span>Powered by CareerHub</span>
         </div>
