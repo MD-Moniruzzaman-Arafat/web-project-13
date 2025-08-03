@@ -1,11 +1,10 @@
 import SectionTitle from "../sectionTitle/SectionTitle";
 import JobCategoryCard from "./JobCategoryCard";
-import accountIcon from "../../assets/icons/accounts.png";
-import creativeIcon from "../../assets/icons/creative.png";
-import marketingIcon from "../../assets/icons/marketing.png";
-import chipIcon from "../../assets/icons/chip.png";
+import { useLoaderData } from "react-router";
 
 const JobCategoryList = () => {
+  const { jobCategory } = useLoaderData();
+  console.log(jobCategory);
   return (
     <>
       <div className="my-20 container mx-auto">
@@ -16,26 +15,9 @@ const JobCategoryList = () => {
           }
         />
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
-          <JobCategoryCard
-            image={accountIcon}
-            title={"Account & Finance"}
-            description={"300 Jobs Available"}
-          />
-          <JobCategoryCard
-            image={creativeIcon}
-            title={"Creative Design"}
-            description={"100+ Jobs Available"}
-          />
-          <JobCategoryCard
-            image={marketingIcon}
-            title={"Marketing & Sales"}
-            description={"150 Jobs Available"}
-          />
-          <JobCategoryCard
-            image={chipIcon}
-            title={"Engineering Job"}
-            description={"224 Jobs Available"}
-          />
+          {jobCategory.map((category) => (
+            <JobCategoryCard key={category?.id} category={category} />
+          ))}
         </div>
       </div>
     </>
