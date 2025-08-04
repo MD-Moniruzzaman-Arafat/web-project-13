@@ -1,9 +1,13 @@
 import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { Link } from "react-router";
+import { useContext } from "react";
+import { JobDetailsContext } from "../../context";
 
 const FeaturedJobsCard = ({ singleJob }) => {
-  console.log(singleJob);
+  // console.log(singleJob);
+  const { setJobDetails } = useContext(JobDetailsContext);
+
   return (
     <>
       <div className="border border-[#E8E8E8] rounded-sm p-10">
@@ -26,9 +30,14 @@ const FeaturedJobsCard = ({ singleJob }) => {
             <AiOutlineDollarCircle /> Salary : {singleJob?.salary}
           </span>
         </div>
-        <button className="btn bg-[#7E90FE] text-white my-2">
-          <Link to={"/job-detail"}> View Details</Link>
-        </button>
+        <Link to={"/job-detail"}>
+          <button
+            onClick={() => setJobDetails(singleJob)}
+            className="btn bg-[#7E90FE] text-white my-2"
+          >
+            View Details
+          </button>
+        </Link>
       </div>
     </>
   );
