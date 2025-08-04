@@ -4,15 +4,46 @@ import { HiOutlineCalendarDateRange } from "react-icons/hi2";
 import { MdMailOutline, MdOutlinePhone } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
 import { useContext } from "react";
-import { JobDetailsContext } from "../context";
+import { AppliedJobContext, JobDetailsContext } from "../context";
+import { toast, ToastContainer } from "react-toastify";
 
 const JobDetails = () => {
   const { jobDetails } = useContext(JobDetailsContext);
-  console.log(jobDetails);
+  const { appliedJob, setAppliedJob } = useContext(AppliedJobContext);
+  console.log(appliedJob);
+  function handleApply(job) {
+    // appliedJob.find((item) => item.id !== job.id);
+    if (!appliedJob.find((item) => item.id === job.id)) {
+      setAppliedJob([...appliedJob, job]);
+      toast("Apply Done", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  }
+
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <PageBanner title={"Job Details"} />
-      <div className="container mx-auto flex gap-5 my-20 min-h-screen">
+      <div className="container mx-auto flex flex-col lg:flex-row gap-5 my-20 min-h-screen">
         <div className="flex-2">
           <p className="mb-5">
             <span className="font-bold">Job Description:</span>{" "}
@@ -66,7 +97,10 @@ const JobDetails = () => {
               : {jobDetails?.contact_information?.address}
             </p>
           </div>
-          <button className="mt-5 bg-[#7E90FE] btn w-full text-white">
+          <button
+            onClick={() => handleApply(jobDetails)}
+            className="mt-5 bg-[#7E90FE] btn w-full text-white"
+          >
             Apply Now
           </button>
         </div>
